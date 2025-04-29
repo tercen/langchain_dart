@@ -12,6 +12,7 @@ part 'schema.g.dart';
 part 'schema.freezed.dart';
 
 part 'create_message_request.dart';
+part 'thinking.dart';
 part 'create_message_request_metadata.dart';
 part 'tool_choice.dart';
 part 'tool_choice_type.dart';

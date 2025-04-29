@@ -111,6 +111,9 @@ class CreateMessageRequest with _$CreateMessageRequest {
     /// messages in the Messages API.
     required List<Message> messages,
 
+    /// An object describing extended thinking about the request.
+    @JsonKey(includeIfNull: false) Thinking? thinking,
+
     /// The maximum number of tokens to generate before stopping.
     ///
     /// Note that our models may stop _before_ reaching this maximum. This parameter
@@ -267,6 +270,7 @@ class CreateMessageRequest with _$CreateMessageRequest {
   static const List<String> propertyNames = [
     'model',
     'messages',
+    'thinking',
     'max_tokens',
     'metadata',
     'stop_sequences',
@@ -289,6 +293,7 @@ class CreateMessageRequest with _$CreateMessageRequest {
     return {
       'model': model,
       'messages': messages,
+      'thinking': thinking,
       'max_tokens': maxTokens,
       'metadata': metadata,
       'stop_sequences': stopSequences,

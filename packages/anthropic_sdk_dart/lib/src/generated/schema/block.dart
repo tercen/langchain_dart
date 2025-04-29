@@ -104,6 +104,39 @@ sealed class Block with _$Block {
     CacheControlEphemeral? cacheControl,
   }) = ToolResultBlock;
 
+  // ------------------------------------------
+  // UNION: ThinkingBlock
+  // ------------------------------------------
+
+  /// A block of text content.
+
+  @FreezedUnionValue('thinking')
+  const factory Block.thinking({
+    /// The thinking content.
+    @JsonKey(includeIfNull: false) String? thinking,
+
+    /// The type of content block.
+    @Default('thinking') String type,
+
+    /// The signature.
+    @Default('') String signature,
+  }) = ThinkingBlock;
+
+  // ------------------------------------------
+  // UNION: RedactedThinkingBlock
+  // ------------------------------------------
+
+  /// A block of text content.
+
+  @FreezedUnionValue('redacted_thinking')
+  const factory Block.redactedThinking({
+    /// The text content.
+    @JsonKey(includeIfNull: false) String? data,
+
+    /// The type of content block.
+    @Default('redacted_thinking') String type,
+  }) = RedactedThinkingBlock;
+
   /// Object construction from a JSON representation
   factory Block.fromJson(Map<String, dynamic> json) => _$BlockFromJson(json);
 }
@@ -121,6 +154,10 @@ enum BlockEnumType {
   toolUse,
   @JsonValue('tool_result')
   toolResult,
+  @JsonValue('thinking')
+  thinking,
+  @JsonValue('redacted_thinking')
+  redactedThinking,
 }
 
 // ==========================================

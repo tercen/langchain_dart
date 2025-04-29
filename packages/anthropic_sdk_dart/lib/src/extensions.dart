@@ -90,3 +90,19 @@ extension BlockDeltaX on BlockDelta {
     );
   }
 }
+
+/// Remove thinking blocks
+extension MessageContentWithoutThinking on MessageContent {
+  MessageContent get removeThinkgBlock {
+    MessageContent msgContent;
+
+    switch (this) {
+      case MessageContentBlocks():
+        msgContent = MessageContentBlocks(
+            blocks.where((b) => b is! ThinkingBlock).toList(),);
+      case MessageContentText():
+        msgContent = this;
+    }
+    return msgContent;
+  }
+}

@@ -214,6 +214,8 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/Message'
+        thinking:
+          $ref: '#/components/schemas/Thinking'
         max_tokens:
           type: integer
           description: |
@@ -375,6 +377,18 @@ components:
         - model
         - messages
         - max_tokens
+    Thinking:
+      type: object
+      description: An object describing extended thinking about the request.
+      properties:
+        type:
+          type: string
+          description: Enable extended thinking.
+          default: "disabled"
+        budget_tokens:
+          type: integer
+          description: Token budget.
+          default: null
     CreateMessageRequestMetadata:
       type: object
       description: An object describing metadata about the request.
@@ -572,6 +586,8 @@ components:
         - $ref: "#/components/schemas/ImageBlock"
         - $ref: "#/components/schemas/ToolUseBlock"
         - $ref: "#/components/schemas/ToolResultBlock"
+        - $ref: "#/components/schemas/ThinkingBlock"
+        - $ref: "#/components/schemas/RedactedThinkingBlock"
       discriminator:
         propertyName: type
         mapping:
@@ -579,6 +595,8 @@ components:
           image: "#/components/schemas/ImageBlock"
           tool_use: "#/components/schemas/ToolUseBlock"
           tool_result: "#/components/schemas/ToolResultBlock"
+          thinking: "#/components/schemas/ThinkingBlock"
+          redacted_thinking: "#/components/schemas/RedactedThinkingBlock"
     TextBlock:
       type: object
       description: A block of text content.
@@ -691,6 +709,32 @@ components:
       required:
         - tool_use_id
         - content
+    ThinkingBlock:
+      type: object
+      description: A block of text content.
+      properties:
+        thinking:
+          type: string
+          description: The thinking content.
+        type:
+          type: string
+          description: The type of content block.
+          default: thinking
+        signature:
+          type: string
+          description: The signature.
+          default: ""
+    RedactedThinkingBlock:
+      type: object
+      description: A block of text content.
+      properties:
+        data:
+          type: string
+          description: The text content.
+        type:
+          type: string
+          description: The type of content block.
+          default: redacted_thinking
     CacheControlEphemeral:
       type: object
       description: The cache control settings.

@@ -117,6 +117,10 @@ mixin _$CreateMessageRequest {
   /// messages in the Messages API.
   List<Message> get messages => throw _privateConstructorUsedError;
 
+  /// An object describing extended thinking about the request.
+  @JsonKey(includeIfNull: false)
+  Thinking? get thinking => throw _privateConstructorUsedError;
+
   /// The maximum number of tokens to generate before stopping.
   ///
   /// Note that our models may stop _before_ reaching this maximum. This parameter
@@ -291,6 +295,7 @@ abstract class $CreateMessageRequestCopyWith<$Res> {
   $Res call(
       {@_ModelConverter() Model model,
       List<Message> messages,
+      @JsonKey(includeIfNull: false) Thinking? thinking,
       @JsonKey(name: 'max_tokens') int maxTokens,
       @JsonKey(includeIfNull: false) CreateMessageRequestMetadata? metadata,
       @JsonKey(name: 'stop_sequences', includeIfNull: false)
@@ -307,6 +312,7 @@ abstract class $CreateMessageRequestCopyWith<$Res> {
       bool stream});
 
   $ModelCopyWith<$Res> get model;
+  $ThinkingCopyWith<$Res>? get thinking;
   $CreateMessageRequestMetadataCopyWith<$Res>? get metadata;
   $CreateMessageRequestSystemCopyWith<$Res>? get system;
   $ToolChoiceCopyWith<$Res>? get toolChoice;
@@ -330,6 +336,7 @@ class _$CreateMessageRequestCopyWithImpl<$Res,
   $Res call({
     Object? model = null,
     Object? messages = null,
+    Object? thinking = freezed,
     Object? maxTokens = null,
     Object? metadata = freezed,
     Object? stopSequences = freezed,
@@ -350,6 +357,10 @@ class _$CreateMessageRequestCopyWithImpl<$Res,
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      thinking: freezed == thinking
+          ? _value.thinking
+          : thinking // ignore: cast_nullable_to_non_nullable
+              as Thinking?,
       maxTokens: null == maxTokens
           ? _value.maxTokens
           : maxTokens // ignore: cast_nullable_to_non_nullable
@@ -400,6 +411,20 @@ class _$CreateMessageRequestCopyWithImpl<$Res,
   $ModelCopyWith<$Res> get model {
     return $ModelCopyWith<$Res>(_value.model, (value) {
       return _then(_value.copyWith(model: value) as $Val);
+    });
+  }
+
+  /// Create a copy of CreateMessageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ThinkingCopyWith<$Res>? get thinking {
+    if (_value.thinking == null) {
+      return null;
+    }
+
+    return $ThinkingCopyWith<$Res>(_value.thinking!, (value) {
+      return _then(_value.copyWith(thinking: value) as $Val);
     });
   }
 
@@ -458,6 +483,7 @@ abstract class _$$CreateMessageRequestImplCopyWith<$Res>
   $Res call(
       {@_ModelConverter() Model model,
       List<Message> messages,
+      @JsonKey(includeIfNull: false) Thinking? thinking,
       @JsonKey(name: 'max_tokens') int maxTokens,
       @JsonKey(includeIfNull: false) CreateMessageRequestMetadata? metadata,
       @JsonKey(name: 'stop_sequences', includeIfNull: false)
@@ -475,6 +501,8 @@ abstract class _$$CreateMessageRequestImplCopyWith<$Res>
 
   @override
   $ModelCopyWith<$Res> get model;
+  @override
+  $ThinkingCopyWith<$Res>? get thinking;
   @override
   $CreateMessageRequestMetadataCopyWith<$Res>? get metadata;
   @override
@@ -498,6 +526,7 @@ class __$$CreateMessageRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? model = null,
     Object? messages = null,
+    Object? thinking = freezed,
     Object? maxTokens = null,
     Object? metadata = freezed,
     Object? stopSequences = freezed,
@@ -518,6 +547,10 @@ class __$$CreateMessageRequestImplCopyWithImpl<$Res>
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      thinking: freezed == thinking
+          ? _value.thinking
+          : thinking // ignore: cast_nullable_to_non_nullable
+              as Thinking?,
       maxTokens: null == maxTokens
           ? _value.maxTokens
           : maxTokens // ignore: cast_nullable_to_non_nullable
@@ -568,6 +601,7 @@ class _$CreateMessageRequestImpl extends _CreateMessageRequest {
   const _$CreateMessageRequestImpl(
       {@_ModelConverter() required this.model,
       required final List<Message> messages,
+      @JsonKey(includeIfNull: false) this.thinking,
       @JsonKey(name: 'max_tokens') required this.maxTokens,
       @JsonKey(includeIfNull: false) this.metadata,
       @JsonKey(name: 'stop_sequences', includeIfNull: false)
@@ -781,6 +815,11 @@ class _$CreateMessageRequestImpl extends _CreateMessageRequest {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_messages);
   }
+
+  /// An object describing extended thinking about the request.
+  @override
+  @JsonKey(includeIfNull: false)
+  final Thinking? thinking;
 
   /// The maximum number of tokens to generate before stopping.
   ///
@@ -1042,7 +1081,7 @@ class _$CreateMessageRequestImpl extends _CreateMessageRequest {
 
   @override
   String toString() {
-    return 'CreateMessageRequest(model: $model, messages: $messages, maxTokens: $maxTokens, metadata: $metadata, stopSequences: $stopSequences, system: $system, temperature: $temperature, toolChoice: $toolChoice, tools: $tools, topK: $topK, topP: $topP, stream: $stream)';
+    return 'CreateMessageRequest(model: $model, messages: $messages, thinking: $thinking, maxTokens: $maxTokens, metadata: $metadata, stopSequences: $stopSequences, system: $system, temperature: $temperature, toolChoice: $toolChoice, tools: $tools, topK: $topK, topP: $topP, stream: $stream)';
   }
 
   @override
@@ -1052,6 +1091,8 @@ class _$CreateMessageRequestImpl extends _CreateMessageRequest {
             other is _$CreateMessageRequestImpl &&
             (identical(other.model, model) || other.model == model) &&
             const DeepCollectionEquality().equals(other._messages, _messages) &&
+            (identical(other.thinking, thinking) ||
+                other.thinking == thinking) &&
             (identical(other.maxTokens, maxTokens) ||
                 other.maxTokens == maxTokens) &&
             (identical(other.metadata, metadata) ||
@@ -1075,6 +1116,7 @@ class _$CreateMessageRequestImpl extends _CreateMessageRequest {
       runtimeType,
       model,
       const DeepCollectionEquality().hash(_messages),
+      thinking,
       maxTokens,
       metadata,
       const DeepCollectionEquality().hash(_stopSequences),
@@ -1108,6 +1150,7 @@ abstract class _CreateMessageRequest extends CreateMessageRequest {
   const factory _CreateMessageRequest(
       {@_ModelConverter() required final Model model,
       required final List<Message> messages,
+      @JsonKey(includeIfNull: false) final Thinking? thinking,
       @JsonKey(name: 'max_tokens') required final int maxTokens,
       @JsonKey(includeIfNull: false)
       final CreateMessageRequestMetadata? metadata,
@@ -1226,6 +1269,11 @@ abstract class _CreateMessageRequest extends CreateMessageRequest {
   /// messages in the Messages API.
   @override
   List<Message> get messages;
+
+  /// An object describing extended thinking about the request.
+  @override
+  @JsonKey(includeIfNull: false)
+  Thinking? get thinking;
 
   /// The maximum number of tokens to generate before stopping.
   ///
@@ -2224,6 +2272,195 @@ abstract class SystemMessageContentText extends CreateMessageRequestSystem {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SystemMessageContentTextImplCopyWith<_$SystemMessageContentTextImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+Thinking _$ThinkingFromJson(Map<String, dynamic> json) {
+  return _Thinking.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Thinking {
+  /// Enable extended thinking.
+  String get type => throw _privateConstructorUsedError;
+
+  /// Token budget.
+  @JsonKey(name: 'budget_tokens', includeIfNull: false)
+  int? get budgetTokens => throw _privateConstructorUsedError;
+
+  /// Serializes this Thinking to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Thinking
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ThinkingCopyWith<Thinking> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ThinkingCopyWith<$Res> {
+  factory $ThinkingCopyWith(Thinking value, $Res Function(Thinking) then) =
+      _$ThinkingCopyWithImpl<$Res, Thinking>;
+  @useResult
+  $Res call(
+      {String type,
+      @JsonKey(name: 'budget_tokens', includeIfNull: false) int? budgetTokens});
+}
+
+/// @nodoc
+class _$ThinkingCopyWithImpl<$Res, $Val extends Thinking>
+    implements $ThinkingCopyWith<$Res> {
+  _$ThinkingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Thinking
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? budgetTokens = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      budgetTokens: freezed == budgetTokens
+          ? _value.budgetTokens
+          : budgetTokens // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ThinkingImplCopyWith<$Res>
+    implements $ThinkingCopyWith<$Res> {
+  factory _$$ThinkingImplCopyWith(
+          _$ThinkingImpl value, $Res Function(_$ThinkingImpl) then) =
+      __$$ThinkingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String type,
+      @JsonKey(name: 'budget_tokens', includeIfNull: false) int? budgetTokens});
+}
+
+/// @nodoc
+class __$$ThinkingImplCopyWithImpl<$Res>
+    extends _$ThinkingCopyWithImpl<$Res, _$ThinkingImpl>
+    implements _$$ThinkingImplCopyWith<$Res> {
+  __$$ThinkingImplCopyWithImpl(
+      _$ThinkingImpl _value, $Res Function(_$ThinkingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Thinking
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? budgetTokens = freezed,
+  }) {
+    return _then(_$ThinkingImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      budgetTokens: freezed == budgetTokens
+          ? _value.budgetTokens
+          : budgetTokens // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ThinkingImpl extends _Thinking {
+  const _$ThinkingImpl(
+      {this.type = 'disabled',
+      @JsonKey(name: 'budget_tokens', includeIfNull: false) this.budgetTokens})
+      : super._();
+
+  factory _$ThinkingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThinkingImplFromJson(json);
+
+  /// Enable extended thinking.
+  @override
+  @JsonKey()
+  final String type;
+
+  /// Token budget.
+  @override
+  @JsonKey(name: 'budget_tokens', includeIfNull: false)
+  final int? budgetTokens;
+
+  @override
+  String toString() {
+    return 'Thinking(type: $type, budgetTokens: $budgetTokens)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThinkingImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.budgetTokens, budgetTokens) ||
+                other.budgetTokens == budgetTokens));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, type, budgetTokens);
+
+  /// Create a copy of Thinking
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThinkingImplCopyWith<_$ThinkingImpl> get copyWith =>
+      __$$ThinkingImplCopyWithImpl<_$ThinkingImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ThinkingImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Thinking extends Thinking {
+  const factory _Thinking(
+      {final String type,
+      @JsonKey(name: 'budget_tokens', includeIfNull: false)
+      final int? budgetTokens}) = _$ThinkingImpl;
+  const _Thinking._() : super._();
+
+  factory _Thinking.fromJson(Map<String, dynamic> json) =
+      _$ThinkingImpl.fromJson;
+
+  /// Enable extended thinking.
+  @override
+  String get type;
+
+  /// Token budget.
+  @override
+  @JsonKey(name: 'budget_tokens', includeIfNull: false)
+  int? get budgetTokens;
+
+  /// Create a copy of Thinking
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ThinkingImplCopyWith<_$ThinkingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 CreateMessageRequestMetadata _$CreateMessageRequestMetadataFromJson(
@@ -7324,6 +7561,10 @@ Block _$BlockFromJson(Map<String, dynamic> json) {
       return ToolUseBlock.fromJson(json);
     case 'tool_result':
       return ToolResultBlock.fromJson(json);
+    case 'thinking':
+      return ThinkingBlock.fromJson(json);
+    case 'redacted_thinking':
+      return RedactedThinkingBlock.fromJson(json);
 
     default:
       throw CheckedFromJsonException(
@@ -7335,10 +7576,6 @@ Block _$BlockFromJson(Map<String, dynamic> json) {
 mixin _$Block {
   /// The type of content block.
   String get type => throw _privateConstructorUsedError;
-
-  /// The cache control settings.
-  @JsonKey(name: 'cache_control', includeIfNull: false)
-  CacheControlEphemeral? get cacheControl => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -7369,6 +7606,12 @@ mixin _$Block {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)
         toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7401,6 +7644,11 @@ mixin _$Block {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7433,6 +7681,11 @@ mixin _$Block {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -7442,6 +7695,8 @@ mixin _$Block {
     required TResult Function(ImageBlock value) image,
     required TResult Function(ToolUseBlock value) toolUse,
     required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7450,6 +7705,8 @@ mixin _$Block {
     TResult? Function(ImageBlock value)? image,
     TResult? Function(ToolUseBlock value)? toolUse,
     TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7458,6 +7715,8 @@ mixin _$Block {
     TResult Function(ImageBlock value)? image,
     TResult Function(ToolUseBlock value)? toolUse,
     TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -7476,12 +7735,7 @@ abstract class $BlockCopyWith<$Res> {
   factory $BlockCopyWith(Block value, $Res Function(Block) then) =
       _$BlockCopyWithImpl<$Res, Block>;
   @useResult
-  $Res call(
-      {String type,
-      @JsonKey(name: 'cache_control', includeIfNull: false)
-      CacheControlEphemeral? cacheControl});
-
-  $CacheControlEphemeralCopyWith<$Res>? get cacheControl;
+  $Res call({String type});
 }
 
 /// @nodoc
@@ -7500,32 +7754,13 @@ class _$BlockCopyWithImpl<$Res, $Val extends Block>
   @override
   $Res call({
     Object? type = null,
-    Object? cacheControl = freezed,
   }) {
     return _then(_value.copyWith(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      cacheControl: freezed == cacheControl
-          ? _value.cacheControl
-          : cacheControl // ignore: cast_nullable_to_non_nullable
-              as CacheControlEphemeral?,
     ) as $Val);
-  }
-
-  /// Create a copy of Block
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CacheControlEphemeralCopyWith<$Res>? get cacheControl {
-    if (_value.cacheControl == null) {
-      return null;
-    }
-
-    return $CacheControlEphemeralCopyWith<$Res>(_value.cacheControl!, (value) {
-      return _then(_value.copyWith(cacheControl: value) as $Val);
-    });
   }
 }
 
@@ -7542,7 +7777,6 @@ abstract class _$$TextBlockImplCopyWith<$Res> implements $BlockCopyWith<$Res> {
       @JsonKey(name: 'cache_control', includeIfNull: false)
       CacheControlEphemeral? cacheControl});
 
-  @override
   $CacheControlEphemeralCopyWith<$Res>? get cacheControl;
 }
 
@@ -7577,6 +7811,20 @@ class __$$TextBlockImplCopyWithImpl<$Res>
           : cacheControl // ignore: cast_nullable_to_non_nullable
               as CacheControlEphemeral?,
     ));
+  }
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CacheControlEphemeralCopyWith<$Res>? get cacheControl {
+    if (_value.cacheControl == null) {
+      return null;
+    }
+
+    return $CacheControlEphemeralCopyWith<$Res>(_value.cacheControl!, (value) {
+      return _then(_value.copyWith(cacheControl: value));
+    });
   }
 }
 
@@ -7665,6 +7913,12 @@ class _$TextBlockImpl extends TextBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)
         toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
   }) {
     return text(this.text, type, cacheControl);
   }
@@ -7700,6 +7954,11 @@ class _$TextBlockImpl extends TextBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
   }) {
     return text?.call(this.text, type, cacheControl);
   }
@@ -7735,6 +7994,11 @@ class _$TextBlockImpl extends TextBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
     required TResult orElse(),
   }) {
     if (text != null) {
@@ -7750,6 +8014,8 @@ class _$TextBlockImpl extends TextBlock {
     required TResult Function(ImageBlock value) image,
     required TResult Function(ToolUseBlock value) toolUse,
     required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
   }) {
     return text(this);
   }
@@ -7761,6 +8027,8 @@ class _$TextBlockImpl extends TextBlock {
     TResult? Function(ImageBlock value)? image,
     TResult? Function(ToolUseBlock value)? toolUse,
     TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
   }) {
     return text?.call(this);
   }
@@ -7772,6 +8040,8 @@ class _$TextBlockImpl extends TextBlock {
     TResult Function(ImageBlock value)? image,
     TResult Function(ToolUseBlock value)? toolUse,
     TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
     required TResult orElse(),
   }) {
     if (text != null) {
@@ -7807,7 +8077,6 @@ abstract class TextBlock extends Block {
   String get type;
 
   /// The cache control settings.
-  @override
   @JsonKey(name: 'cache_control', includeIfNull: false)
   CacheControlEphemeral? get cacheControl;
 
@@ -7833,7 +8102,6 @@ abstract class _$$ImageBlockImplCopyWith<$Res> implements $BlockCopyWith<$Res> {
       CacheControlEphemeral? cacheControl});
 
   $ImageBlockSourceCopyWith<$Res> get source;
-  @override
   $CacheControlEphemeralCopyWith<$Res>? get cacheControl;
 }
 
@@ -7877,6 +8145,20 @@ class __$$ImageBlockImplCopyWithImpl<$Res>
   $ImageBlockSourceCopyWith<$Res> get source {
     return $ImageBlockSourceCopyWith<$Res>(_value.source, (value) {
       return _then(_value.copyWith(source: value));
+    });
+  }
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CacheControlEphemeralCopyWith<$Res>? get cacheControl {
+    if (_value.cacheControl == null) {
+      return null;
+    }
+
+    return $CacheControlEphemeralCopyWith<$Res>(_value.cacheControl!, (value) {
+      return _then(_value.copyWith(cacheControl: value));
     });
   }
 }
@@ -7966,6 +8248,12 @@ class _$ImageBlockImpl extends ImageBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)
         toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
   }) {
     return image(source, type, cacheControl);
   }
@@ -8001,6 +8289,11 @@ class _$ImageBlockImpl extends ImageBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
   }) {
     return image?.call(source, type, cacheControl);
   }
@@ -8036,6 +8329,11 @@ class _$ImageBlockImpl extends ImageBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
     required TResult orElse(),
   }) {
     if (image != null) {
@@ -8051,6 +8349,8 @@ class _$ImageBlockImpl extends ImageBlock {
     required TResult Function(ImageBlock value) image,
     required TResult Function(ToolUseBlock value) toolUse,
     required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
   }) {
     return image(this);
   }
@@ -8062,6 +8362,8 @@ class _$ImageBlockImpl extends ImageBlock {
     TResult? Function(ImageBlock value)? image,
     TResult? Function(ToolUseBlock value)? toolUse,
     TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
   }) {
     return image?.call(this);
   }
@@ -8073,6 +8375,8 @@ class _$ImageBlockImpl extends ImageBlock {
     TResult Function(ImageBlock value)? image,
     TResult Function(ToolUseBlock value)? toolUse,
     TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
     required TResult orElse(),
   }) {
     if (image != null) {
@@ -8108,7 +8412,6 @@ abstract class ImageBlock extends Block {
   String get type;
 
   /// The cache control settings.
-  @override
   @JsonKey(name: 'cache_control', includeIfNull: false)
   CacheControlEphemeral? get cacheControl;
 
@@ -8136,7 +8439,6 @@ abstract class _$$ToolUseBlockImplCopyWith<$Res>
       @JsonKey(name: 'cache_control', includeIfNull: false)
       CacheControlEphemeral? cacheControl});
 
-  @override
   $CacheControlEphemeralCopyWith<$Res>? get cacheControl;
 }
 
@@ -8181,6 +8483,20 @@ class __$$ToolUseBlockImplCopyWithImpl<$Res>
           : cacheControl // ignore: cast_nullable_to_non_nullable
               as CacheControlEphemeral?,
     ));
+  }
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CacheControlEphemeralCopyWith<$Res>? get cacheControl {
+    if (_value.cacheControl == null) {
+      return null;
+    }
+
+    return $CacheControlEphemeralCopyWith<$Res>(_value.cacheControl!, (value) {
+      return _then(_value.copyWith(cacheControl: value));
+    });
   }
 }
 
@@ -8291,6 +8607,12 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)
         toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
   }) {
     return toolUse(id, name, input, type, cacheControl);
   }
@@ -8326,6 +8648,11 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
   }) {
     return toolUse?.call(id, name, input, type, cacheControl);
   }
@@ -8361,6 +8688,11 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
     required TResult orElse(),
   }) {
     if (toolUse != null) {
@@ -8376,6 +8708,8 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
     required TResult Function(ImageBlock value) image,
     required TResult Function(ToolUseBlock value) toolUse,
     required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
   }) {
     return toolUse(this);
   }
@@ -8387,6 +8721,8 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
     TResult? Function(ImageBlock value)? image,
     TResult? Function(ToolUseBlock value)? toolUse,
     TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
   }) {
     return toolUse?.call(this);
   }
@@ -8398,6 +8734,8 @@ class _$ToolUseBlockImpl extends ToolUseBlock {
     TResult Function(ImageBlock value)? image,
     TResult Function(ToolUseBlock value)? toolUse,
     TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
     required TResult orElse(),
   }) {
     if (toolUse != null) {
@@ -8442,7 +8780,6 @@ abstract class ToolUseBlock extends Block {
   String get type;
 
   /// The cache control settings.
-  @override
   @JsonKey(name: 'cache_control', includeIfNull: false)
   CacheControlEphemeral? get cacheControl;
 
@@ -8471,7 +8808,6 @@ abstract class _$$ToolResultBlockImplCopyWith<$Res>
       CacheControlEphemeral? cacheControl});
 
   $ToolResultBlockContentCopyWith<$Res> get content;
-  @override
   $CacheControlEphemeralCopyWith<$Res>? get cacheControl;
 }
 
@@ -8525,6 +8861,20 @@ class __$$ToolResultBlockImplCopyWithImpl<$Res>
   $ToolResultBlockContentCopyWith<$Res> get content {
     return $ToolResultBlockContentCopyWith<$Res>(_value.content, (value) {
       return _then(_value.copyWith(content: value));
+    });
+  }
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CacheControlEphemeralCopyWith<$Res>? get cacheControl {
+    if (_value.cacheControl == null) {
+      return null;
+    }
+
+    return $CacheControlEphemeralCopyWith<$Res>(_value.cacheControl!, (value) {
+      return _then(_value.copyWith(cacheControl: value));
     });
   }
 }
@@ -8634,6 +8984,12 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)
         toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
   }) {
     return toolResult(toolUseId, content, isError, type, cacheControl);
   }
@@ -8669,6 +9025,11 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
   }) {
     return toolResult?.call(toolUseId, content, isError, type, cacheControl);
   }
@@ -8704,6 +9065,11 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
             @JsonKey(name: 'cache_control', includeIfNull: false)
             CacheControlEphemeral? cacheControl)?
         toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
     required TResult orElse(),
   }) {
     if (toolResult != null) {
@@ -8719,6 +9085,8 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
     required TResult Function(ImageBlock value) image,
     required TResult Function(ToolUseBlock value) toolUse,
     required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
   }) {
     return toolResult(this);
   }
@@ -8730,6 +9098,8 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
     TResult? Function(ImageBlock value)? image,
     TResult? Function(ToolUseBlock value)? toolUse,
     TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
   }) {
     return toolResult?.call(this);
   }
@@ -8741,6 +9111,8 @@ class _$ToolResultBlockImpl extends ToolResultBlock {
     TResult Function(ImageBlock value)? image,
     TResult Function(ToolUseBlock value)? toolUse,
     TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
     required TResult orElse(),
   }) {
     if (toolResult != null) {
@@ -8790,7 +9162,6 @@ abstract class ToolResultBlock extends Block {
   String get type;
 
   /// The cache control settings.
-  @override
   @JsonKey(name: 'cache_control', includeIfNull: false)
   CacheControlEphemeral? get cacheControl;
 
@@ -8800,6 +9171,605 @@ abstract class ToolResultBlock extends Block {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToolResultBlockImplCopyWith<_$ToolResultBlockImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ThinkingBlockImplCopyWith<$Res>
+    implements $BlockCopyWith<$Res> {
+  factory _$$ThinkingBlockImplCopyWith(
+          _$ThinkingBlockImpl value, $Res Function(_$ThinkingBlockImpl) then) =
+      __$$ThinkingBlockImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(includeIfNull: false) String? thinking,
+      String type,
+      String signature});
+}
+
+/// @nodoc
+class __$$ThinkingBlockImplCopyWithImpl<$Res>
+    extends _$BlockCopyWithImpl<$Res, _$ThinkingBlockImpl>
+    implements _$$ThinkingBlockImplCopyWith<$Res> {
+  __$$ThinkingBlockImplCopyWithImpl(
+      _$ThinkingBlockImpl _value, $Res Function(_$ThinkingBlockImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? thinking = freezed,
+    Object? type = null,
+    Object? signature = null,
+  }) {
+    return _then(_$ThinkingBlockImpl(
+      thinking: freezed == thinking
+          ? _value.thinking
+          : thinking // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      signature: null == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ThinkingBlockImpl extends ThinkingBlock {
+  const _$ThinkingBlockImpl(
+      {@JsonKey(includeIfNull: false) this.thinking,
+      this.type = 'thinking',
+      this.signature = ''})
+      : super._();
+
+  factory _$ThinkingBlockImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThinkingBlockImplFromJson(json);
+
+  /// The thinking content.
+  @override
+  @JsonKey(includeIfNull: false)
+  final String? thinking;
+
+  /// The type of content block.
+  @override
+  @JsonKey()
+  final String type;
+
+  /// The signature.
+  @override
+  @JsonKey()
+  final String signature;
+
+  @override
+  String toString() {
+    return 'Block.thinking(thinking: $thinking, type: $type, signature: $signature)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThinkingBlockImpl &&
+            (identical(other.thinking, thinking) ||
+                other.thinking == thinking) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.signature, signature) ||
+                other.signature == signature));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, thinking, type, signature);
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThinkingBlockImplCopyWith<_$ThinkingBlockImpl> get copyWith =>
+      __$$ThinkingBlockImplCopyWithImpl<_$ThinkingBlockImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        text,
+    required TResult Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        image,
+    required TResult Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        toolUse,
+    required TResult Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
+  }) {
+    return thinking(this.thinking, type, signature);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        text,
+    TResult? Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        image,
+    TResult? Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolUse,
+    TResult? Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
+  }) {
+    return thinking?.call(this.thinking, type, signature);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        text,
+    TResult Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        image,
+    TResult Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolUse,
+    TResult Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
+    required TResult orElse(),
+  }) {
+    if (thinking != null) {
+      return thinking(this.thinking, type, signature);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextBlock value) text,
+    required TResult Function(ImageBlock value) image,
+    required TResult Function(ToolUseBlock value) toolUse,
+    required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
+  }) {
+    return thinking(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextBlock value)? text,
+    TResult? Function(ImageBlock value)? image,
+    TResult? Function(ToolUseBlock value)? toolUse,
+    TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
+  }) {
+    return thinking?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextBlock value)? text,
+    TResult Function(ImageBlock value)? image,
+    TResult Function(ToolUseBlock value)? toolUse,
+    TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
+    required TResult orElse(),
+  }) {
+    if (thinking != null) {
+      return thinking(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ThinkingBlockImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class ThinkingBlock extends Block {
+  const factory ThinkingBlock(
+      {@JsonKey(includeIfNull: false) final String? thinking,
+      final String type,
+      final String signature}) = _$ThinkingBlockImpl;
+  const ThinkingBlock._() : super._();
+
+  factory ThinkingBlock.fromJson(Map<String, dynamic> json) =
+      _$ThinkingBlockImpl.fromJson;
+
+  /// The thinking content.
+  @JsonKey(includeIfNull: false)
+  String? get thinking;
+
+  /// The type of content block.
+  @override
+  String get type;
+
+  /// The signature.
+  String get signature;
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ThinkingBlockImplCopyWith<_$ThinkingBlockImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RedactedThinkingBlockImplCopyWith<$Res>
+    implements $BlockCopyWith<$Res> {
+  factory _$$RedactedThinkingBlockImplCopyWith(
+          _$RedactedThinkingBlockImpl value,
+          $Res Function(_$RedactedThinkingBlockImpl) then) =
+      __$$RedactedThinkingBlockImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(includeIfNull: false) String? data, String type});
+}
+
+/// @nodoc
+class __$$RedactedThinkingBlockImplCopyWithImpl<$Res>
+    extends _$BlockCopyWithImpl<$Res, _$RedactedThinkingBlockImpl>
+    implements _$$RedactedThinkingBlockImplCopyWith<$Res> {
+  __$$RedactedThinkingBlockImplCopyWithImpl(_$RedactedThinkingBlockImpl _value,
+      $Res Function(_$RedactedThinkingBlockImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? type = null,
+  }) {
+    return _then(_$RedactedThinkingBlockImpl(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RedactedThinkingBlockImpl extends RedactedThinkingBlock {
+  const _$RedactedThinkingBlockImpl(
+      {@JsonKey(includeIfNull: false) this.data,
+      this.type = 'redacted_thinking'})
+      : super._();
+
+  factory _$RedactedThinkingBlockImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RedactedThinkingBlockImplFromJson(json);
+
+  /// The text content.
+  @override
+  @JsonKey(includeIfNull: false)
+  final String? data;
+
+  /// The type of content block.
+  @override
+  @JsonKey()
+  final String type;
+
+  @override
+  String toString() {
+    return 'Block.redactedThinking(data: $data, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RedactedThinkingBlockImpl &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RedactedThinkingBlockImplCopyWith<_$RedactedThinkingBlockImpl>
+      get copyWith => __$$RedactedThinkingBlockImplCopyWithImpl<
+          _$RedactedThinkingBlockImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        text,
+    required TResult Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        image,
+    required TResult Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        toolUse,
+    required TResult Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)
+        toolResult,
+    required TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)
+        thinking,
+    required TResult Function(
+            @JsonKey(includeIfNull: false) String? data, String type)
+        redactedThinking,
+  }) {
+    return redactedThinking(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        text,
+    TResult? Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        image,
+    TResult? Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolUse,
+    TResult? Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolResult,
+    TResult? Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult? Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
+  }) {
+    return redactedThinking?.call(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String text,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        text,
+    TResult Function(
+            ImageBlockSource source,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        image,
+    TResult Function(
+            String id,
+            String name,
+            Map<String, dynamic> input,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolUse,
+    TResult Function(
+            @JsonKey(name: 'tool_use_id') String toolUseId,
+            @_ToolResultBlockContentConverter() ToolResultBlockContent content,
+            @JsonKey(name: 'is_error', includeIfNull: false) bool? isError,
+            String type,
+            @JsonKey(name: 'cache_control', includeIfNull: false)
+            CacheControlEphemeral? cacheControl)?
+        toolResult,
+    TResult Function(@JsonKey(includeIfNull: false) String? thinking,
+            String type, String signature)?
+        thinking,
+    TResult Function(@JsonKey(includeIfNull: false) String? data, String type)?
+        redactedThinking,
+    required TResult orElse(),
+  }) {
+    if (redactedThinking != null) {
+      return redactedThinking(data, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextBlock value) text,
+    required TResult Function(ImageBlock value) image,
+    required TResult Function(ToolUseBlock value) toolUse,
+    required TResult Function(ToolResultBlock value) toolResult,
+    required TResult Function(ThinkingBlock value) thinking,
+    required TResult Function(RedactedThinkingBlock value) redactedThinking,
+  }) {
+    return redactedThinking(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextBlock value)? text,
+    TResult? Function(ImageBlock value)? image,
+    TResult? Function(ToolUseBlock value)? toolUse,
+    TResult? Function(ToolResultBlock value)? toolResult,
+    TResult? Function(ThinkingBlock value)? thinking,
+    TResult? Function(RedactedThinkingBlock value)? redactedThinking,
+  }) {
+    return redactedThinking?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextBlock value)? text,
+    TResult Function(ImageBlock value)? image,
+    TResult Function(ToolUseBlock value)? toolUse,
+    TResult Function(ToolResultBlock value)? toolResult,
+    TResult Function(ThinkingBlock value)? thinking,
+    TResult Function(RedactedThinkingBlock value)? redactedThinking,
+    required TResult orElse(),
+  }) {
+    if (redactedThinking != null) {
+      return redactedThinking(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RedactedThinkingBlockImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class RedactedThinkingBlock extends Block {
+  const factory RedactedThinkingBlock(
+      {@JsonKey(includeIfNull: false) final String? data,
+      final String type}) = _$RedactedThinkingBlockImpl;
+  const RedactedThinkingBlock._() : super._();
+
+  factory RedactedThinkingBlock.fromJson(Map<String, dynamic> json) =
+      _$RedactedThinkingBlockImpl.fromJson;
+
+  /// The text content.
+  @JsonKey(includeIfNull: false)
+  String? get data;
+
+  /// The type of content block.
+  @override
+  String get type;
+
+  /// Create a copy of Block
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RedactedThinkingBlockImplCopyWith<_$RedactedThinkingBlockImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ToolResultBlockContent _$ToolResultBlockContentFromJson(
@@ -10245,7 +11215,7 @@ class _$ContentBlockStartEventImpl extends ContentBlockStartEvent {
       _$$ContentBlockStartEventImplFromJson(json);
 
   /// A block of content in a message.
-  /// Any of: [TextBlock], [ImageBlock], [ToolUseBlock], [ToolResultBlock]
+  /// Any of: [TextBlock], [ImageBlock], [ToolUseBlock], [ToolResultBlock], [ThinkingBlock], [RedactedThinkingBlock]
   @override
   @JsonKey(name: 'content_block')
   final Block contentBlock;
@@ -10427,7 +11397,7 @@ abstract class ContentBlockStartEvent extends MessageStreamEvent {
       _$ContentBlockStartEventImpl.fromJson;
 
   /// A block of content in a message.
-  /// Any of: [TextBlock], [ImageBlock], [ToolUseBlock], [ToolResultBlock]
+  /// Any of: [TextBlock], [ImageBlock], [ToolUseBlock], [ToolResultBlock], [ThinkingBlock], [RedactedThinkingBlock]
   @JsonKey(name: 'content_block')
   Block get contentBlock;
 
